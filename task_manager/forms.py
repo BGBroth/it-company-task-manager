@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from task_manager.models import Worker
 
 
 def create_search_field(placeholder):
@@ -20,3 +22,13 @@ class TaskSearchForm(forms.Form):
 
 class WorkerSearchForm(forms.Form):
     username = create_search_field("Search by username")
+
+
+class WorkerCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Worker
+        fields = UserCreationForm.Meta.fields + (
+            "priority",
+            "first_name",
+            "last_name",
+        )

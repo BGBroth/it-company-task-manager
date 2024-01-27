@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
-from task_manager.forms import TaskSearchForm, WorkerSearchForm
+from task_manager.forms import TaskSearchForm, WorkerSearchForm, WorkerCreationForm
 
 from task_manager.models import Worker, Task
 
