@@ -83,7 +83,7 @@ def toggle_assign_to_car(request, pk):
     worker = Worker.objects.get(id=request.user.id)
     if (
         Task.objects.get(id=pk) in Worker.tasks.all()
-    ):  # probably could check if car exists
+    ):
         worker.tasks.remove(pk)
     else:
         worker.tasks.add(pk)

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Username: {{ worker.username }}
+    <a href="{% url 'task_manager:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+
+{#    <a href="{% url 'taxi:driver-update' pk=driver.id %}" class="btn btn-secondary link-to-page">#}
+{#      Update license number#}
+{#    </a>#}
+  </h1>
+
+  <p><strong>First name:</strong> {{ worker.first_name }}</p>
+  <p><strong>Last name:</strong> {{ worker.last_name }}</p>
+
+  <div class="ml-3">
+    <h4>Tasks</h4>
+
+    {% for task in worker.tasks.all %}
+        <hr>
+        <p><strong>Name:</strong> {{ task.name }}</p>
+        <p><strong>Description:</strong> {{ task.description }}</p>
+        <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+        <p><strong>Is completed:</strong> {{ task.is_complited }}</p>
+        <p><strong>Priority:</strong> {{ task.priority }}</p>
+        <p><strong>Type:</strong> {{ task.type }}</p>
+        <p class="text-muted"><strong>Id:</strong> {{task.id}}</p>
+
+    {% empty %}
+      <p>No tasks!</p>
+    {% endfor %}
+  </div>
+{% endblock %}
