@@ -47,7 +47,7 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
 
 
-class TaskrCreateView(LoginRequiredMixin, generic.CreateView):
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy("task_manager:task-list")
@@ -94,13 +94,13 @@ class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = WorkerCreationForm
 
 
-class DriverDeleteView(LoginRequiredMixin, generic.DeleteView):
+class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("")
 
 
 @login_required
-def toggle_assign_to_car(request, pk):
+def toggle_assign_to_task(request, pk):
     worker = Worker.objects.get(id=request.user.id)
     if (
         Task.objects.get(id=pk) in Worker.tasks.all()
