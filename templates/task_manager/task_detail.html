@@ -21,28 +21,22 @@
 
   <div class="ml-3">
     <h1>Workers
-      {% if worker in user.tasks.all %}
-      <a href="{% url 'task_manager:toggle-car-assign' pk=task.id %}" class="btn btn-danger link-to-page">
+      {% if task in user.tasks.all %}
+      <a href="{% url 'task_manager:toggle-task-assign' pk=task.id %}" class="btn btn-danger link-to-page">
         Delete me from this task
       </a>
     {% else %}
-      <a href="{% url 'task_manager:toggle-car-assign' pk=task.id %}" class="btn btn-success link-to-page">
+      <a href="{% url 'task_manager:toggle-task-assign' pk=task.id %}" class="btn btn-success link-to-page">
         Assign me to this task
       </a>
     {% endif %}
     </h1>
-
-    {% for task in worker.tasks.all %}
-
-      <hr>
-      <ul>
-        {% for worker in task.workers.all %}
-          <li>{{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})</li>
-        {% endfor %}
-      </ul>
-
-    {% empty %}
-      <p>No workers!</p>
-    {% endfor %}
+    <ul>
+      {% for worker in task.assignees.all %}
+        <li>{{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})</li>
+      {% empty %}
+        <p>No workers for this task!</p>
+      {% endfor %}
+    </ul>
   </div>
 {% endblock %}

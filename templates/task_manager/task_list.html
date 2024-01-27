@@ -31,9 +31,9 @@
     <tr>
       <td>{{ task.id }}</td>
       <td>
-{#        <a href="{{ driver.get_absolute_url }}">#}
+        <a href="{% url "task_manager:task-detail" pk=task.id %}">
           {{ task.name }}
-{#        </a>#}
+        </a>
       </td>
       <td>{{ task.description }}</td>
       <td>{{ task.deadline }}</td>

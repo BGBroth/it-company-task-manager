@@ -103,9 +103,9 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 def toggle_assign_to_task(request, pk):
     worker = Worker.objects.get(id=request.user.id)
     if (
-        Task.objects.get(id=pk) in Worker.tasks.all()
+        Task.objects.get(id=pk) in worker.tasks.all()
     ):
         worker.tasks.remove(pk)
     else:
         worker.tasks.add(pk)
-    return HttpResponseRedirect(reverse_lazy("task_manager:worker-detail", args=[pk]))
+    return HttpResponseRedirect(reverse_lazy("task_manager:task-detail", args=[pk]))
