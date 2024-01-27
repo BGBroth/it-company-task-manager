@@ -18,7 +18,7 @@ class Position(models.Model):
 class Worker(models.Model):
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
     username = models.CharField(max_length=255)
-    email = models.EmailField()
+    email = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -29,10 +29,10 @@ class Worker(models.Model):
 
 class Task(models.Model):
     PRIORITY_CHOICES = [
-        ('Urgent', 'Urgent'),
-        ('High', 'High'),
-        ('Mid', 'Mid'),
-        ('Low', 'Low'),
+        ("Urgent", "Urgent"),
+        ("High", "High"),
+        ("Mid", "Mid"),
+        ("Low", "Low"),
     ]
 
     name = models.CharField(max_length=255)
