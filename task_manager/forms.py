@@ -24,7 +24,7 @@ class WorkerSearchForm(forms.Form):
     username = create_search_field("Search by username")
 
 
-class WorkerCreationForm(UserCreationForm):
+class WorkerForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Worker
         fields = UserCreationForm.Meta.fields + (

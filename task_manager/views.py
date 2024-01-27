@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
-from task_manager.forms import TaskSearchForm, WorkerSearchForm, WorkerCreationForm, TaskForm
+from task_manager.forms import TaskSearchForm, WorkerSearchForm, WorkerForm, TaskForm
 
 from task_manager.models import Worker, Task
 
@@ -91,7 +91,13 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
-    form_class = WorkerCreationForm
+    form_class = WorkerForm
+
+
+class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Worker
+    form_class = WorkerForm
+    success_url = reverse_lazy("task_manager:worker-list")
 
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
