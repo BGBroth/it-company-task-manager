@@ -1,14 +1,48 @@
-<ul class="sidebar-nav list-group">
-  {% if user.is_authenticated %}
-    <li class="list-group-item">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
-    <li class="list-group-item"><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
-  {% else %}
-    <li class="list-group-item"><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
-  {% endif %}
+{#<ul class="sidebar-nav list-group">#}
+{#  {% if user.is_authenticated %}#}
+{#    <li class="list-group-item">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>#}
+{#    <li class="list-group-item"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>#}
+{#  {% else %}#}
+{#    <li class="list-group-item"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>#}
+{#  {% endif %}#}
+{##}
+{#  <br>#}
+{##}
+{#  <li class="list-group-item"><a href="{% url 'task_manager:index' %}">Home</a></li>#}
+{#  <li class="list-group-item"><a href="{% url 'task_manager:worker-list' %}">All workers</a></li>#}
+{#  <li class="list-group-item"><a href="{% url 'task_manager:task-list' %}">All tasks</a></li>#}
+{#</ul>#}
 
-  <br>
+<div class="sidebar">
+  <div class="sidebar-wrapper">
+    <div class="logo">
+      <a href="javascript:void(0)" class="simple-text logo-mini">
+        TM
+      </a>
+      <a href="javascript:void(0)" class="simple-text logo-normal">
+        Task Manager
+      </a>
+    </div>
+    <ul class="nav">
+      <li class="active">
+        <a href="{% url "task_manager:index" %}">
+          <i class="tim-icons icon-bullet-list-67"></i>
+          <p>Home Page</p>
+        </a>
+      </li>
+      <li class="active">
+        <a href="{% url "task_manager:worker-list" %}">
+          <i class="tim-icons icon-badge"></i>
+          <p>Workers</p>
+        </a>
+      </li>
+      <li class="active">
+        <a href="{% url "task_manager:task-list" %}">
+          <i class="tim-icons icon-book-bookmark"></i>
+          <p>Tasks</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
 
-  <li class="list-group-item"><a href="{% url 'task_manager:index' %}">Home</a></li>
-  <li class="list-group-item"><a href="{% url 'task_manager:worker-list' %}">All workers</a></li>
-  <li class="list-group-item"><a href="{% url 'task_manager:task-list' %}">All tasks</a></li>
-</ul>
