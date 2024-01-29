@@ -1,14 +1,60 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Task Manager Home {{ ASSETS_ROOT }}</h1>
-    <p>Welcome to the best Task Manager Ever!</p>
-
-    <p>The Task manager has the following record counts:</p>
-    <ul>
-        <li><strong>Workers:</strong> {{ num_workers }}</li>
-        <li><strong>Tasks:</strong> {{ num_tasks }}</li>
-    </ul>
+{#    <h1>Task Manager Home</h1>#}
+{#    <p>Welcome to the best Task Manager Ever!</p>#}
+{##}
+{#    <p>The Task manager has the following record counts:</p>#}
+{#    <ul>#}
+{#        <li><strong>Workers:</strong> {{ num_workers }}</li>#}
+{#        <li><strong>Tasks:</strong> {{ num_tasks }}</li>#}
+{#    </ul>#}
+  <div class="content">
+    <div class="typography-line">
+      <h1>Task Manager Home</h1>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card card-chart">
+          <div class="card-header">
+            <h5 class="card-category">Workers:</h5>
+            <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i>{{ num_workers }}</h3>
+          </div>
+{#          <div class="card-body">#}
+{#            <div class="chart-area">#}
+{#              <canvas id="chartLinePurple"></canvas>#}
+{#            </div>#}
+{#          </div>#}
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-chart">
+          <div class="card-header">
+            <h5 class="card-category">Tasks:</h5>
+            <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info"></i>{{ num_tasks }}</h3>
+          </div>
+{#          <div class="card-body">#}
+{#            <div class="chart-area">#}
+{#              <canvas id="CountryChart"></canvas>#}
+{#            </div>#}
+{#          </div>#}
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-chart">
+          <div class="card-header">
+            <h5 class="card-category">Completed Tasks</h5>
+            <h3 class="card-title"><i class="tim-icons icon-send text-success"></i> 12,100K</h3>
+          </div>
+{#          <div class="card-body">#}
+{#            <div class="chart-area">#}
+{#              <canvas id="chartLineGreen"></canvas>#}
+{#            </div>#}
+{#          </div>#}
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
 {% block javascripts %}

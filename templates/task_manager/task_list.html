@@ -1,50 +1,100 @@
 {% extends "base.html" %}
-{% load crispy_forms_filters %}
+{#{% load crispy_forms_filters %}#}
 
 {% block content %}
-  <h1>
-    Tasks List
-    <a href="{% url 'task_manager:task-create' %}" class="btn btn-primary link-to-page">
-      Create
-    </a>
-  </h1>
-
-  <form method="get" action="" class="form-inline">
-    {{ search_form|crispy }}
-    <input class="btn btn-secondary" type="submit" value="🧐">
-  </form>
-
-  <br>
-
-  {% if task_list %}
-  <table class="table">
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Deadline</th>
-      <th>Is completed</th>
-      <th>Priority</th>
-      <th>Task type</th>
-    </tr>
-  {% for task in task_list %}
-    <tr>
-      <td>{{ task.id }}</td>
-      <td>
-        <a href="{% url "task_manager:task-detail" pk=task.id %}">
-          {{ task.name }}
-        </a>
-      </td>
-      <td>{{ task.description }}</td>
-      <td>{{ task.deadline }}</td>
-      <td>{{ task.is_completed }}</td>
-      <td>{{ task.priority }}</td>
-      <td>{{ task.task_type }}</td>
-    </tr>
-  {% endfor %}
-
-  </table>
-  {% else %}
-    <p>There are no tasks in the service.</p>
-  {% endif %}
+{#  <h1>#}
+{#    Tasks List#}
+{#    <a href="{% url 'task_manager:task-create' %}" class="btn btn-primary link-to-page">#}
+{#      Create#}
+{#    </a>#}
+{#  </h1>#}
+{##}
+{#  <form method="get" action="" class="form-inline">#}
+{#    {{ search_form|crispy }}#}
+{#    <input class="btn btn-secondary" type="submit" value="🧐">#}
+{#  </form>#}
+{##}
+{#  <br>#}
+{##}
+{#  {% if task_list %}#}
+{#  <table class="table">#}
+{#    <tr>#}
+{#      <th>ID</th>#}
+{#      <th>Name</th>#}
+{#      <th>Description</th>#}
+{#      <th>Deadline</th>#}
+{#      <th>Is completed</th>#}
+{#      <th>Priority</th>#}
+{#      <th>Task type</th>#}
+{#    </tr>#}
+{#  {% for task in task_list %}#}
+{#    <tr>#}
+{#      <td>{{ task.id }}</td>#}
+{#      <td>#}
+{#        <a href="{% url "task_manager:task-detail" pk=task.id %}">#}
+{#          {{ task.name }}#}
+{#        </a>#}
+{#      </td>#}
+{#      <td>{{ task.description }}</td>#}
+{#      <td>{{ task.deadline }}</td>#}
+{#      <td>{{ task.is_completed }}</td>#}
+{#      <td>{{ task.priority }}</td>#}
+{#      <td>{{ task.task_type }}</td>#}
+{#    </tr>#}
+{#  {% endfor %}#}
+{##}
+{#  </table>#}
+{#  {% else %}#}
+{#    <p>There are no tasks in the service.</p>#}
+{#  {% endif %}#}
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header">
+            <h4 class="card-title">
+              Tasks List
+              <a href="{% url 'task_manager:task-create' %}" class="btn btn-sm btn-primary float-right">
+                Create
+              </a>
+            </h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table tablesorter " id="">
+                <thead class=" text-primary">
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Deadline</th>
+                    <th>Is completed</th>
+                    <th>Priority</th>
+                    <th>Task type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for task in task_list %}
+                    <tr>
+                      <td>{{ task.id }}</td>
+                      <td>
+                        <a href="{% url "task_manager:task-detail" pk=task.id %}">
+                          {{ task.name }}
+                        </a>
+                      </td>
+                      <td>{{ task.description }}</td>
+                      <td>{{ task.deadline }}</td>
+                      <td>{{ task.is_completed }}</td>
+                      <td>{{ task.priority }}</td>
+                      <td>{{ task.task_type }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

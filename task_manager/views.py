@@ -43,30 +43,30 @@ class TaskListView(generic.ListView):
         return queryset
 
 
-class TaskDetailView(LoginRequiredMixin, generic.DetailView):
+class TaskDetailView(generic.DetailView):
     model = Task
 
 
-class TaskCreateView(LoginRequiredMixin, generic.CreateView):
-    model = Task
-    form_class = TaskForm
-    success_url = reverse_lazy("task_manager:task-list")
-
-
-class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
+class TaskCreateView(generic.CreateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy("task_manager:task-list")
 
 
-class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
+class TaskUpdateView(generic.UpdateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("task_manager:task-list")
+
+
+class TaskDeleteView(generic.DeleteView):
     model = Task
     success_url = reverse_lazy("task_manager:task-list")
 
 
 class WorkerListView(generic.ListView):
     model = Worker
-    paginate_by = 5
+    paginate_by = 7
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WorkerListView, self).get_context_data(**kwargs)
@@ -84,28 +84,28 @@ class WorkerListView(generic.ListView):
         return queryset
 
 
-class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+class WorkerDetailView(generic.DetailView):
     model = Worker
     queryset = Worker.objects.all()
 
 
-class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
+class WorkerCreateView(generic.CreateView):
     model = Worker
     form_class = WorkerForm
 
 
-class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
+class WorkerUpdateView(generic.UpdateView):
     model = Worker
     form_class = WorkerForm
     success_url = reverse_lazy("task_manager:worker-list")
 
 
-class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
+class WorkerDeleteView(generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("")
 
 
-@login_required
+# @login_required
 def toggle_assign_to_task(request, pk):
     worker = Worker.objects.get(id=request.user.id)
     if (
