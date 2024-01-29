@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from task_manager.views import index, WorkerListView, TaskListView, TaskCreateView, TaskDetailView, TaskUpdateView, \
     TaskDeleteView, toggle_assign_to_task, WorkerDetailView, WorkerCreateView, WorkerDeleteView, WorkerUpdateView
 
