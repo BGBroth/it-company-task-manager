@@ -12,7 +12,17 @@
 
           <a href="{% url 'task_manager:task-update' pk=task.id %}" class="btn btn-sm btn-secondary link-to-page float-right">
             Update task
-          </a></h2>
+          </a>
+
+          {% if task.is_completed is False %}
+            <a href="{% url 'task_manager:toggle-is-completed' pk=task.id %}" class="btn btn-sm btn-success link-to-page float-right">
+              Mark as completed
+            </a>
+          {% else %}
+            <a href="{% url 'task_manager:toggle-is-completed' pk=task.id %}" class="btn btn-sm btn-danger link-to-page float-right">
+              Mark as uncompleted
+            </a></h2>
+          {% endif %}
         </div>
         <div class="card-body">
           <p><strong>Description:</strong> {{ task.description }}</p>

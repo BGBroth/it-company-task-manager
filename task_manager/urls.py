@@ -1,6 +1,7 @@
 from django.urls import path, re_path
 from task_manager.views import index, WorkerListView, TaskListView, TaskCreateView, TaskDetailView, TaskUpdateView, \
-    TaskDeleteView, toggle_assign_to_task, WorkerDetailView, WorkerCreateView, WorkerDeleteView, WorkerUpdateView
+    TaskDeleteView, toggle_assign_to_task, WorkerDetailView, WorkerCreateView, WorkerDeleteView, WorkerUpdateView, \
+    toggle_change_is_completed
 
 urlpatterns = [
     path("", index, name="index"),
@@ -13,6 +14,11 @@ urlpatterns = [
         "tasks/<int:pk>/toggle-assign/",
         toggle_assign_to_task,
         name="toggle-task-assign",
+    ),
+    path(
+        "tasks/<int:pk>/toggle-is-completed/",
+        toggle_change_is_completed,
+        name="toggle-is-completed",
     ),
     path("workers/", WorkerListView.as_view(), name="worker-list"),
     path(
