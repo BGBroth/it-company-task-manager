@@ -9,7 +9,8 @@
           <span class="navbar-toggler-bar bar3"></span>
         </button>
       </div>
-      <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+
+      <a class="navbar-brand" href="{% url 'task_manager:index' %}">Task Manager</a>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +32,7 @@
           </a>
           <ul class="dropdown-menu dropdown-navbar">
             <li class="nav-link">
-              <a href="{% url 'login' %}" class="nav-item dropdown-item">Profile</a>
+              <a href="{% url 'task_manager:worker-detail' pk=user.id %}" class="nav-item dropdown-item">Profile</a>
             </li>
             <li class="dropdown-divider"></li>
             <li class="nav-link">
