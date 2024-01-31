@@ -5,7 +5,12 @@
     <div class="col-md-12">
       <div class="card ">
         <div class="card-header">
-          <h2 class="card-title">{{ worker.first_name }} {{ worker.last_name }}</h2>
+          <h2 class="card-title">{{ worker.first_name }} {{ worker.last_name }}
+          {% if worker.id == user.id %}
+            <a href="{% url 'task_manager:worker-update' pk=user.id %}" class="btn btn-sm btn-success link-to-page float-right">
+              Update
+            </a>
+          {% endif %}</h2>
         </div>
         <div class="card-body">
           <p><strong>Username:</strong> {{ worker.username }}</p>

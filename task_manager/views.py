@@ -1,10 +1,12 @@
+from abc import ABC
+
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
-from task_manager.forms import TaskSearchForm, WorkerSearchForm, WorkerForm, TaskForm
+from task_manager.forms import TaskSearchForm, WorkerSearchForm, WorkerCreationForm, TaskForm, WorkerUpdateForm
 
 from task_manager.models import Worker, Task
 
@@ -91,13 +93,19 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
-    form_class = WorkerForm
+    form_class = WorkerCreationForm
 
 
 class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Worker
-    form_class = WorkerForm
+    form_class = WorkerUpdateForm
     success_url = reverse_lazy("task_manager:worker-list")
+
+    def dispatch(self, request, pk, *args, **kwargs):
+        if pk != request.user.id:
+            return HttpResponseRedirect(reverse_lazy("task_manager:worker-update", args=[request.user.id]))
+
+        return super().dispatch(request, pk, *args, **kwargs)
 
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):

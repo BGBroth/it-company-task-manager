@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from task_manager.models import Worker, Task, TaskType
 
 
@@ -24,14 +24,21 @@ class WorkerSearchForm(forms.Form):
     username = create_search_field("Search by username")
 
 
-class WorkerForm(UserCreationForm):
+class WorkerCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Worker
         fields = UserCreationForm.Meta.fields + (
             "position",
             "first_name",
             "last_name",
+            "email",
         )
+
+
+class WorkerUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Worker
+        fields = "__all__"
 
 
 class TaskForm(forms.ModelForm):
